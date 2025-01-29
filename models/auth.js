@@ -99,7 +99,7 @@ const login = async (req, res) => {
 
 const logOutUser = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { userId } = req.userId;
     const result = await pool.query(
       `UPDATE clientUser SET token =$2 WHERE id = $1`,
       [userId, ' ']

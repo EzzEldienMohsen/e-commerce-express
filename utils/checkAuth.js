@@ -16,15 +16,19 @@ const authenticate = (req, res, next) => {
 
   // If no token found in both places, reject request
   if (!token) {
-    return res.status(401).json({ error: 'Unauthorized: No token provided' });
+    return res
+      .status(401)
+      .json({ success: false, error: 'Unauthorized: No token provided' });
   }
 
   try {
     const decoded = verifyToken(token);
-    req.userId = decoded.id; // Attach user ID to request object
+    req.userId = decoded.userId; // Attach user ID to request object
     next(); // Proceed to the next middleware or route handler
   } catch (error) {
-    return res.status(403).json({ error: 'Invalid or expired token' });
+    return res
+      .status(403)
+      .json({ success: false, error: 'Invalid or expired token' });
   }
 };
 
