@@ -53,14 +53,14 @@ const login = async (req, res) => {
       [email]
     );
     const user = loggingResult.rows[0];
-    if (loggingResult.rowCount === 0) {
-      res.status(400).json({
+    if (loggingResult.rows.length === 0) {
+      return res.status(400).json({
         success: false,
         message: 'The email is not registered to an account',
       });
     }
     if (!verifyPassword(user.password, password)) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: 'Please check password and try again',
       });
