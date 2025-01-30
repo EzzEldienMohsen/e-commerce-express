@@ -10,6 +10,8 @@ const contactRouter = require('./api/v1/contact/contactRoute');
 const addressRouter = require('./api/v1/address/addressRouter');
 const profileRouter = require('./api/v1/profile/profileRouter');
 const wishlistRouter = require('./api/v1/wishlist/wishlistRoute');
+const cartRoute = require('./api/v1/cart/cartRoute');
+const notFound = require('./utils/not-found');
 // starting project
 const app = express();
 const port = process.env.PORT || 5000;
@@ -23,5 +25,8 @@ app.use('/api/v1/contact', contactRouter);
 app.use('/api/v1/address', addressRouter);
 app.use('/api/v1/profile', profileRouter);
 app.use('/api/v1/wishlist', wishlistRouter);
+app.use('/api/v1/cart', cartRoute);
 
+// not found module
+app.use(notFound);
 app.listen(port, () => console.log(`server is on port ${port}`));

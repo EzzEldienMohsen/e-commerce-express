@@ -5,7 +5,7 @@ const getWishlist = async (req, res) => {
   try {
     const wishlist = await fetchWishlistByClientId(userId);
     if (!wishlist.id) {
-      return res.status(200).json({ success: true, data: [], count: 0 });
+      return res.status(200).json({ success: true, data: [], totalItems: 0 });
     }
     const wishlistItems = await pool.query(
       `
@@ -16,7 +16,7 @@ const getWishlist = async (req, res) => {
     res.status(200).json({
       success: true,
       data: wishlistItems.rows,
-      count: wishlistItems.rowCount,
+      totalItems: wishlistItems.rowCount,
     });
   } catch (error) {
     console.error('error fetching wishlist', error);

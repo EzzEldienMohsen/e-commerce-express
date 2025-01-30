@@ -55,7 +55,7 @@ const updateProfile = async (req, res) => {
         bio || null,
       ]
     );
-    res.status(201).json({
+    res.status(202).json({
       success: true,
       data: result.rows,
       message: 'profile updated successfully',

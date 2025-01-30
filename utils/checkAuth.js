@@ -23,8 +23,8 @@ const authenticate = (req, res, next) => {
 
   try {
     const decoded = verifyToken(token);
-    req.userId = decoded.userId; // Attach user ID to request object
-    next(); // Proceed to the next middleware or route handler
+    req.userId = decoded.userId;
+    next();
   } catch (error) {
     return res
       .status(403)

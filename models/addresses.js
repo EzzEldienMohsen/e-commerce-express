@@ -71,7 +71,7 @@ const updateAddress = async (req, res) => {
       'UPDATE client_address SET address_name = $1, address_details =$2 WHERE client_id = $3 AND id = $4 RETURNING *',
       [address_name, address_details, userId, id]
     );
-    res.status(201).json({
+    res.status(202).json({
       success: true,
       data: result.rows,
       message: 'Address updated successfully',
